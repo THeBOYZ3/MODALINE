@@ -1,4 +1,4 @@
-import { Instagram, Twitter, Facebook, Mail, ArrowRight } from 'lucide-react';
+import { Facebook, Instagram, Mail, ArrowRight } from 'lucide-react';
 import { handleSmoothScroll } from '@/lib/lenis';
 import { useShop } from '@/context/ShopContext';
 import BlurText from './BlurText';
@@ -82,72 +82,16 @@ function Footer() {
                 lasting value.
               </p>
               <div className="mt-6 flex items-center gap-3">
-                {[Instagram, Twitter, Facebook].map((Icon, i) => (
+                {[
+                  { Icon: Facebook, name: 'Facebook', id: 'footer-social-fb' },
+                  { Icon: Instagram, name: 'Instagram', id: 'footer-social-instagram' },
+                ].map(({ Icon, name, id }) => (
                   <a
-                    key={i}
+                    key={name}
+                    id={id}
                     href="#"
                     onClick={(e) => handleNavClick(e, '#home')}
-                    aria-label="Social link"
+                    aria-label={name}
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/60 transition-all duration-300 hover:bg-royal hover:text-white"
                   >
                     <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Quick links */}
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-                Explore
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {[
-                  { label: 'Home', href: '#home' },
-                  { label: 'Shop Basics', href: '#shop' },
-                  { label: 'Our Mission', href: '#mission' },
-                  { label: 'Contact', href: '#contact' },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="text-sm text-white/60 transition-colors hover:text-royal-light"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-                Get in touch
-              </h3>
-              <a
-                href="mailto:hello@modaline.com"
-                className="mt-4 flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-royal-light"
-              >
-                <Mail className="h-4 w-4" />
-                hello@modaline.com
-              </a>
-              <p className="mt-3 text-sm text-white/50">
-                Based in the Philippines. Made for everyone.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 border-t border-white/10 pt-6 text-center">
-            <p className="text-xs text-white/40">
-              © {new Date().getFullYear()} Modaline. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
-}
-
-export default Footer;
