@@ -34,6 +34,29 @@ const SUGGESTED_QUESTIONS = [
   { label: 'How does ordering work?', prompt: 'How does ordering and adding items to cart work?' },
 ];
 
+function getStaticGuideReply(query: string): string {
+  const q = query.toLowerCase();
+  if (q.includes('material') || q.includes('fabric') || q.includes('cotton') || q.includes('polyester')) {
+    return 'Our shirts are crafted from premium **Plain Cotton-Polyester T-Shirt** fabric. It combines the breathable softness of combed cotton with the shape retention and durability of polyester, offering everyday comfort and anti-pilling longevity.';
+  }
+  if (q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('peso') || q.includes('₱') || q.includes('299')) {
+    return 'Our standard base price is **₱299** for sizes XS, S, M, and L. Size XL is ₱319, 2XL is ₱339, and 3XL is ₱359. Exceptional quality at unbeatable value!';
+  }
+  if (q.includes('color') || q.includes('shade')) {
+    return 'We feature four timeless colorways: **Stealth Black**, **Pure White**, **Deep Navy Blue**, and **Signature Royal Blue**. Visit **[Shop Basics](#shop)** to view them all!';
+  }
+  if (q.includes('size') || q.includes('chart') || q.includes('fit') || q.includes('measurement')) {
+    return 'We carry XS up to 3XL! You can check our detailed size specifications and chest/length measurements by clicking Size Chart on any product in **[Shop Basics](#shop)**.';
+  }
+  if (q.includes('recommend') || q.includes('best') || q.includes('popular')) {
+    return 'Our top pick is the **[Modaline Essential Tee](/product/essential-tee)** in Stealth Black or Royal Blue! It features our signature **Plain Cotton-Polyester T-Shirt** construction starting at ₱299.';
+  }
+  if (q.includes('around') || q.includes('tour') || q.includes('explore')) {
+    return 'Here is a quick tour of Modaline:\n- **[Shop Basics](#shop)**: Explore our core plain t-shirts and colorways.\n- **[Featured Lookbook](#collection)**: See our apparel in real settings.\n- **[Our Mission](#mission)**: Learn how we deliver premium basics starting at ₱299.\n- **[Contact Us](#contact)**: Reach our team anytime.';
+  }
+  return 'Welcome to Modaline! All our **Plain Cotton-Polyester T-Shirts** start at **₱299**. Explore our collection at **[Shop Basics](#shop)** or check out the **[Modaline Essential Tee](/product/essential-tee)**!';
+}
+
 export const TourGuideChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentPath, navigate, setIsCartOpen, showToast } = useShop();
@@ -301,25 +324,31 @@ export const TourGuideChat: React.FC = () => {
           return;
         }
       } catch {
-        // Fallback failed as well, display error message
+        // Fallback failed as well (e.g. on static GitHub Pages deployment)
+        const staticReply = getStaticGuideReply(query);
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: guideId,
+            sender: 'guide',
+            text: staticReply,
+            timestamp: new Date(),
+          },
+        ]);
+        return;
       }
 
-      let errorMsg =
-        err instanceof Error
-          ? err.message
-          : 'Sorry, I hit a temporary network snag. Please try again in a moment.';
-
-      if (errorMsg.includes('UNAVAILABLE') || errorMsg.includes('503') || errorMsg.includes('high demand')) {
-        errorMsg = 'Our AI guide is currently experiencing high demand. Please try asking again in a moment!';
-      }
-
-      const errorMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        sender: 'guide',
-        text: errorMsg,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      // If streaming error occurred and fallback couldn't run
+      const staticReply = getStaticGuideReply(query);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: guideId,
+          sender: 'guide',
+          text: staticReply,
+          timestamp: new Date(),
+        },
+      ]);
     }
   };
 

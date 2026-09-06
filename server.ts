@@ -392,9 +392,13 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: 'spa',
     });
+    app.get('/', (req, res) => {
+      res.redirect('/MODALINE/');
+    });
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
+    app.use('/MODALINE', express.static(distPath));
     app.use(express.static(distPath));
     app.get('*all', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));

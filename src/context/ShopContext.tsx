@@ -32,12 +32,35 @@ interface ShopContextType {
   dismissNotification: () => void;
 }
 
+const getBaseUrl = (): string => {
+  const base = import.meta.env.BASE_URL || '/';
+  return base.endsWith('/') ? base.slice(0, -1) : base;
+};
+
+const normalizeToAppPath = (pathname: string): string => {
+  const base = getBaseUrl();
+  if (base && (pathname === base || pathname.startsWith(base + '/'))) {
+    const stripped = pathname.slice(base.length);
+    if (!stripped || stripped === '/') return '/';
+    return stripped.startsWith('/') ? stripped : `/${stripped}`;
+  }
+  return pathname || '/';
+};
+
+const toBrowserPath = (path: string): string => {
+  const base = getBaseUrl();
+  if (!base) return path;
+  if (path === base || path.startsWith(base + '/')) return path;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${cleanPath}`;
+};
+
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
 export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
-      return window.location.pathname || '/';
+      return normalizeToAppPath(window.location.pathname);
     }
     return '/';
   });
@@ -90,7 +113,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Handle popstate (browser back / forward buttons)
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(normalizeToAppPath(window.location.pathname));
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     };
 
@@ -104,10 +127,11 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       setSelectedColorIndex(0);
     }
-    if (window.location.pathname !== path) {
-      window.history.pushState(null, '', path);
+    const targetBrowserPath = toBrowserPath(path);
+    if (window.location.pathname !== targetBrowserPath) {
+      window.history.pushState(null, '', targetBrowserPath);
     }
-    setCurrentPath(path);
+    setCurrentPath(normalizeToAppPath(path));
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   };
 

@@ -1,4 +1,5 @@
 import { Product } from '@/types/product';
+import { getAssetUrl } from '@/lib/assets';
 
 export const SIZE_PRICES: Record<string, number> = {
   XS: 299,
@@ -67,13 +68,13 @@ export const PRODUCTS: Product[] = [
       'Machine Washable',
     ],
     colors: [
-      { name: 'Black', value: '#0a0a0a', image: '/images/products/black.png' },
-      { name: 'White', value: '#f8f8f8', image: '/images/products/white.png' },
-      { name: 'Navy Blue', value: '#0a1628', image: '/images/products/navy_blue.png' },
-      { name: 'Royal Blue', value: '#0550c6', image: '/images/products/Blue.png' },
+      { name: 'Black', value: '#0a0a0a', image: getAssetUrl('/images/products/black.png') },
+      { name: 'White', value: '#f8f8f8', image: getAssetUrl('/images/products/white.png') },
+      { name: 'Navy Blue', value: '#0a1628', image: getAssetUrl('/images/products/navy_blue.png') },
+      { name: 'Royal Blue', value: '#0550c6', image: getAssetUrl('/images/products/Blue.png') },
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    image: '/images/products/black.png',
+    image: getAssetUrl('/images/products/black.png'),
     tag: 'Best Seller',
   },
   {
@@ -97,11 +98,11 @@ export const PRODUCTS: Product[] = [
       'Anti-Shrink Treated',
     ],
     colors: [
-      { name: 'Black', value: '#0a0a0a', image: '/images/products/black.png' },
-      { name: 'White', value: '#f8f8f8', image: '/images/products/white.png' },
+      { name: 'Black', value: '#0a0a0a', image: getAssetUrl('/images/products/black.png') },
+      { name: 'White', value: '#f8f8f8', image: getAssetUrl('/images/products/white.png') },
     ],
     sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
-    image: '/images/products/black.png',
+    image: getAssetUrl('/images/products/black.png'),
     tag: 'Oversized Fit',
   },
   {
@@ -125,11 +126,11 @@ export const PRODUCTS: Product[] = [
       'Tagless Comfort Label',
     ],
     colors: [
-      { name: 'White', value: '#f8f8f8', image: '/images/products/white.png' },
-      { name: 'Navy Blue', value: '#0a1628', image: '/images/products/navy_blue.png' },
+      { name: 'White', value: '#f8f8f8', image: getAssetUrl('/images/products/white.png') },
+      { name: 'Navy Blue', value: '#0a1628', image: getAssetUrl('/images/products/navy_blue.png') },
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
-    image: '/images/products/white.png',
+    image: getAssetUrl('/images/products/white.png'),
     tag: 'Regular Fit',
   },
   {
@@ -152,11 +153,11 @@ export const PRODUCTS: Product[] = [
       'Reinforced Hems',
     ],
     colors: [
-      { name: 'Royal Blue', value: '#0550c6', image: '/images/products/Blue.png' },
-      { name: 'Navy Blue', value: '#0a1628', image: '/images/products/navy_blue.png' },
+      { name: 'Royal Blue', value: '#0550c6', image: getAssetUrl('/images/products/Blue.png') },
+      { name: 'Navy Blue', value: '#0a1628', image: getAssetUrl('/images/products/navy_blue.png') },
     ],
     sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
-    image: '/images/products/Blue.png',
+    image: getAssetUrl('/images/products/Blue.png'),
     tag: 'Limited Color',
   },
 ];

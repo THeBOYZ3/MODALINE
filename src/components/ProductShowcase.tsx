@@ -5,6 +5,7 @@ import ScrollFloat from './ScrollFloat';
 import BlurText from './BlurText';
 import { Magnetic } from '@/components/core/magnetic';
 import { useShop } from '@/context/ShopContext';
+import { getAssetUrl } from '@/lib/assets';
 
 type ColorOption = {
   name: string;
@@ -13,10 +14,10 @@ type ColorOption = {
 };
 
 const COLORS: ColorOption[] = [
-  { name: 'Black', value: '#0a0a0a', image: '/images/products/black.png' },
-  { name: 'White', value: '#f8f8f8', image: '/images/products/white.png' },
-  { name: 'Navy Blue', value: '#0a1628', image: '/images/products/navy_blue.png' },
-  { name: 'Royal Blue', value: '#0550c6', image: '/images/products/Blue.png' },
+  { name: 'Black', value: '#0a0a0a', image: getAssetUrl('/images/products/black.png') },
+  { name: 'White', value: '#f8f8f8', image: getAssetUrl('/images/products/white.png') },
+  { name: 'Navy Blue', value: '#0a1628', image: getAssetUrl('/images/products/navy_blue.png') },
+  { name: 'Royal Blue', value: '#0550c6', image: getAssetUrl('/images/products/Blue.png') },
 ];
 
 function ProductShowcase() {

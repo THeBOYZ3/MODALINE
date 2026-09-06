@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.VITE_BASE_PATH || '/MODALINE/',
   server: { host: '0.0.0.0', port: 3000, allowedHosts: 'all' },
   plugins: [react()],
   resolve: {

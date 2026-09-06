@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { handleSmoothScroll } from '@/lib/lenis';
+import { getAssetUrl } from '@/lib/assets';
 import RotatingText from './RotatingText';
 
 function Hero() {
@@ -68,19 +69,19 @@ function Hero() {
         {/* Right asset — stacked fan of t-shirts */}
         <div className="order-3 relative flex h-72 items-center justify-center lg:h-[28rem]">
           <img
-            src="/images/products/Blue.png"
+            src={getAssetUrl("/images/products/Blue.png")}
             alt="Blue t-shirt"
             className="absolute left-1/2 w-44 -translate-x-[60%] rotate-[-8deg] opacity-60 transition-all duration-500 sm:w-56 lg:w-64"
             loading="eager"
           />
           <img
-            src="/images/products/white.png"
+            src={getAssetUrl("/images/products/white.png")}
             alt="White t-shirt"
             className="absolute left-1/2 w-44 -translate-x-[40%] rotate-[4deg] opacity-80 transition-all duration-500 sm:w-56 lg:w-64"
             loading="eager"
           />
           <img
-            src="/images/products/black.png"
+            src={getAssetUrl("/images/products/black.png")}
             alt="Black t-shirt"
             className="absolute left-1/2 w-44 -translate-x-[20%] rotate-[10deg] opacity-95 drop-shadow-2xl transition-all duration-500 sm:w-56 lg:w-64"
             loading="eager"

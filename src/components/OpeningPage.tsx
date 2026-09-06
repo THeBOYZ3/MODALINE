@@ -4,12 +4,13 @@ import SplitText from "@/components/SplitText";
 import Ballpit from "@/components/Ballpit";
 import FlowingMenu from "@/components/FlowingMenu";
 import BlobCursor from "@/components/BlobCursor";
+import { getAssetUrl } from "@/lib/assets";
 
 const demoItems = [
-  { link: '#shop', text: 'Black Edition', image: '/images/products/black.png' },
-  { link: '#shop', text: 'Navy Blue', image: '/images/products/navy_blue.png' },
-  { link: '#shop', text: 'Royal Blue', image: '/images/products/Blue.png' },
-  { link: '#shop', text: 'Pure White', image: '/images/products/white.png' }
+  { link: '#shop', text: 'Black Edition', image: getAssetUrl('/images/products/black.png') },
+  { link: '#shop', text: 'Navy Blue', image: getAssetUrl('/images/products/navy_blue.png') },
+  { link: '#shop', text: 'Royal Blue', image: getAssetUrl('/images/products/Blue.png') },
+  { link: '#shop', text: 'Pure White', image: getAssetUrl('/images/products/white.png') }
 ];
 
 interface OpeningPageProps {
