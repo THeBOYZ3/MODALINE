@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import gsap from 'gsap-trial';
-import { ScrollTrigger } from 'gsap-trial/ScrollTrigger';
-import { SplitText } from 'gsap-trial/SplitText';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
 import { setLenisInstance } from '@/lib/lenis';
 
