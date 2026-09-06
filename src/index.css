@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .font-anton {
+    font-family: 'Anton', sans-serif;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #0a1628;
+  }
+}
+
+@layer utilities {
+  .tracking-tightest {
+    letter-spacing: -0.04em;
+  }
+  .tracking-tighter-xl {
+    letter-spacing: -0.03em;
+  }
+  
+  .line { 
+    transform: translateY(100%); 
+    will-change: transform; 
+  }
+
+  /* Custom cyan-accented smooth scrollbar for Modaline modal */
+  .custom-scrollbar {
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(10, 22, 40, 0.04);
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(12, 192, 223, 0.5);
+    border-radius: 9999px;
+    transition: background 0.2s ease-in-out;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(12, 192, 223, 0.85);
+  }
+}
+
+/* Firefox scrollbar support */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(12, 192, 223, 0.5) rgba(10, 22, 40, 0.04);
+}
+
+/* Uiverse gagan-gv button style */
+.btn-uiverse-gagan {
+  padding: 15px 20px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  z-index: 1;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-uiverse-gagan::after,
+.btn-uiverse-gagan::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-uiverse-gagan::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #1F80FF;
+  border-radius: 10px;
+}
+
+.btn-uiverse-gagan::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff30;
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.btn-uiverse-gagan:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+  background: #1766cc;
+}
+
+.btn-uiverse-gagan:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.btn-uiverse-gagan:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
+
+/* From Uiverse.io by karthik092726122003 */
+.styled-wrapper .button {
+  display: block;
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+
+.styled-wrapper .button:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 7px;
+  border: 3px solid #0a1628; /* Default light/dark mode border */
+  transition:
+    opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.styled-wrapper .button.light-theme:before {
+  border-color: #ffffff;
+}
+
+.styled-wrapper .button.dark-theme:before {
+  border-color: #0a1628;
+}
+
+.styled-wrapper .button:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 7px;
+  border: 4px solid #0CC0DF;
+  transform: scale(1.3);
+  transition:
+    opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+.styled-wrapper .button:hover:before,
+.styled-wrapper .button:focus:before {
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.styled-wrapper .button:hover:after,
+.styled-wrapper .button:focus:after {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.styled-wrapper .button-box {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 76px;
+}
+
+.styled-wrapper .button-elem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin: 0;
+  transform: rotate(360deg);
+}
+
+.styled-wrapper .button:hover .button-box,
+.styled-wrapper .button:focus .button-box {
+  transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  transform: translateX(-76px);
+}
+
+
