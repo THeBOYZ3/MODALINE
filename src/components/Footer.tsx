@@ -95,3 +95,63 @@ function Footer() {
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/60 transition-all duration-300 hover:bg-royal hover:text-white"
                   >
                     <Icon className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick links */}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
+                Explore
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {[
+                  { label: 'Home', href: '#home' },
+                  { label: 'Shop Basics', href: '#shop' },
+                  { label: 'Our Mission', href: '#mission' },
+                  { label: 'Contact', href: '#contact' },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="text-sm text-white/60 transition-colors hover:text-royal-light"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
+                Get in touch
+              </h3>
+              <a
+                href="mailto:hello@modaline.com"
+                className="mt-4 flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-royal-light"
+              >
+                <Mail className="h-4 w-4" />
+                hello@modaline.com
+              </a>
+              <p className="mt-3 text-sm text-white/50">
+                Based in the Philippines. Made for everyone.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 border-t border-white/10 pt-6 text-center">
+            <p className="text-xs text-white/40">
+              © {new Date().getFullYear()} Modaline. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+export default Footer;
